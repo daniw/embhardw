@@ -1,0 +1,33 @@
+# Old projects
+lab1*
+
+# Altera quartus
+*.sopcinfo
+.qsys
+.qsys_edit
+db
+incremental_db
+output_files
+sopc
+
+# Nios II
+*.elf
+*.gdb
+*.html
+*.map
+*.mk
+*.objdump
+*.qws
+*.x
+*.xml
+HAL
+Makefile
+drivers
+obj
+# bsp
+software/embhardw_bsp/*.a
+software/embhardw_bsp/*.c
+software/embhardw_bsp/*.h
+
+# Temporary editor files
+*swp
