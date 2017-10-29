@@ -17,6 +17,7 @@ sopc
 *.map
 *.mk
 *.objdump
+*.prefs
 *.qws
 *.x
 *.xml

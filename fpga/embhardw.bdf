@@ -281,7 +281,7 @@ agreement for further details.
 		(pt 352 72)
 		(output)
 		(text "sdram_clk_clk" (rect 0 0 122 14)(font "Arial" (font_size 8)))
-		(text "sdram_clk_clk" (rect 100 61 222 75)(font "Arial" (font_size 8)))
+		(text "sdram_clk_clk" (rect 100 61 203 75)(font "Arial" (font_size 8)))
 		(line (pt 352 72)(pt 208 72))
 	)
 	(port

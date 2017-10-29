@@ -6,7 +6,7 @@
    version="1.0"
    description=""
    tags=""
-   categories="" />
+   categories="System" />
  <parameter name="bonusData"><![CDATA[bonusData 
 {
    element CPU
@@ -37,7 +37,7 @@
    {
       datum baseAddress
       {
-         value = "33558544";
+         value = "33558624";
          type = "String";
       }
    }
@@ -53,7 +53,7 @@
    {
       datum baseAddress
       {
-         value = "33558528";
+         value = "33558640";
          type = "String";
       }
    }
@@ -63,6 +63,14 @@
       {
          value = "3";
          type = "int";
+      }
+   }
+   element SDRAM_ctrl.s1
+   {
+      datum baseAddress
+      {
+         value = "16777216";
+         type = "String";
       }
    }
    element clk_0
@@ -85,7 +93,23 @@
    {
       datum baseAddress
       {
-         value = "33558576";
+         value = "33558672";
+         type = "String";
+      }
+   }
+   element performance_counter
+   {
+      datum _sortIndex
+      {
+         value = "8";
+         type = "int";
+      }
+   }
+   element performance_counter.control_slave
+   {
+      datum baseAddress
+      {
+         value = "33558528";
          type = "String";
       }
    }
@@ -101,7 +125,23 @@
    {
       datum baseAddress
       {
-         value = "33558568";
+         value = "33558664";
+         type = "String";
+      }
+   }
+   element timer
+   {
+      datum _sortIndex
+      {
+         value = "7";
+         type = "int";
+      }
+   }
+   element timer.s1
+   {
+      datum baseAddress
+      {
+         value = "33558592";
          type = "String";
       }
    }
@@ -119,7 +159,7 @@
  <parameter name="hideFromIPCatalog" value="false" />
  <parameter name="lockedInterfaceDefinition" value="" />
  <parameter name="maxAdditionalLatency" value="1" />
- <parameter name="projectName" value="" />
+ <parameter name="projectName" value="embhardw.qpf" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="0" />
  <parameter name="testBenchDutName" value="" />
@@ -159,7 +199,7 @@
   <parameter name="dataAddrWidth" value="26" />
   <parameter name="dataMasterHighPerformanceAddrWidth" value="1" />
   <parameter name="dataMasterHighPerformanceMapParam" value="" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='SDRAM_ctrl.s1' start='0x1000000' end='0x2000000' type='altera_avalon_new_sdram_controller.s1' /><slave name='CPU.debug_mem_slave' start='0x2000800' end='0x2001000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='PLL.pll_slave' start='0x2001000' end='0x2001010' type='altpll.pll_slave' /><slave name='LEDs.s1' start='0x2001010' end='0x2001020' type='altera_avalon_pio.s1' /><slave name='sysid.control_slave' start='0x2001028' end='0x2001030' type='altera_avalon_sysid_qsys.control_slave' /><slave name='jtag_uart.avalon_jtag_slave' start='0x2001030' end='0x2001038' type='altera_avalon_jtag_uart.avalon_jtag_slave' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='SDRAM_ctrl.s1' start='0x1000000' end='0x2000000' type='altera_avalon_new_sdram_controller.s1' /><slave name='CPU.debug_mem_slave' start='0x2000800' end='0x2001000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='performance_counter.control_slave' start='0x2001000' end='0x2001040' type='altera_avalon_performance_counter.control_slave' /><slave name='timer.s1' start='0x2001040' end='0x2001060' type='altera_avalon_timer.s1' /><slave name='LEDs.s1' start='0x2001060' end='0x2001070' type='altera_avalon_pio.s1' /><slave name='PLL.pll_slave' start='0x2001070' end='0x2001080' type='altpll.pll_slave' /><slave name='sysid.control_slave' start='0x2001088' end='0x2001090' type='altera_avalon_sysid_qsys.control_slave' /><slave name='jtag_uart.avalon_jtag_slave' start='0x2001090' end='0x2001098' type='altera_avalon_jtag_uart.avalon_jtag_slave' /></address-map>]]></parameter>
   <parameter name="data_master_high_performance_paddr_base" value="0" />
   <parameter name="data_master_high_performance_paddr_size" value="0" />
   <parameter name="data_master_paddr_base" value="0" />
@@ -198,14 +238,14 @@
   <parameter name="icache_tagramBlockType" value="Automatic" />
   <parameter name="impl" value="Fast" />
   <parameter name="instAddrWidth" value="26" />
-  <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='SDRAM_ctrl.s1' start='0x1000000' end='0x2000000' type='altera_avalon_new_sdram_controller.s1' /><slave name='CPU.debug_mem_slave' start='0x2000800' end='0x2001000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='jtag_uart.avalon_jtag_slave' start='0x2001030' end='0x2001038' type='altera_avalon_jtag_uart.avalon_jtag_slave' /></address-map>]]></parameter>
+  <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='SDRAM_ctrl.s1' start='0x1000000' end='0x2000000' type='altera_avalon_new_sdram_controller.s1' /><slave name='CPU.debug_mem_slave' start='0x2000800' end='0x2001000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='jtag_uart.avalon_jtag_slave' start='0x2001090' end='0x2001098' type='altera_avalon_jtag_uart.avalon_jtag_slave' /></address-map>]]></parameter>
   <parameter name="instructionMasterHighPerformanceAddrWidth" value="1" />
   <parameter name="instructionMasterHighPerformanceMapParam" value="" />
   <parameter name="instruction_master_high_performance_paddr_base" value="0" />
   <parameter name="instruction_master_high_performance_paddr_size" value="0" />
   <parameter name="instruction_master_paddr_base" value="0" />
   <parameter name="instruction_master_paddr_size" value="0" />
-  <parameter name="internalIrqMaskSystemInfo" value="1" />
+  <parameter name="internalIrqMaskSystemInfo" value="3" />
   <parameter name="io_regionbase" value="0" />
   <parameter name="io_regionsize" value="0" />
   <parameter name="master_addr_map" value="false" />
@@ -552,11 +592,30 @@
   <parameter name="writeIRQThreshold" value="8" />
  </module>
  <module
+   name="performance_counter"
+   kind="altera_avalon_performance_counter"
+   version="16.0"
+   enabled="1">
+  <parameter name="numberOfSections" value="3" />
+ </module>
+ <module
    name="sysid"
    kind="altera_avalon_sysid_qsys"
    version="16.0"
    enabled="1">
   <parameter name="id" value="1684106857" />
+ </module>
+ <module name="timer" kind="altera_avalon_timer" version="16.0" enabled="1">
+  <parameter name="alwaysRun" value="false" />
+  <parameter name="counterSize" value="32" />
+  <parameter name="fixedPeriod" value="true" />
+  <parameter name="period" value="10" />
+  <parameter name="periodUnits" value="MSEC" />
+  <parameter name="resetOutput" value="false" />
+  <parameter name="snapshot" value="true" />
+  <parameter name="systemFrequency" value="50000000" />
+  <parameter name="timeoutPulseOutput" value="false" />
+  <parameter name="watchdogPulse" value="2" />
  </module>
  <connection
    kind="avalon"
@@ -564,7 +623,7 @@
    start="CPU.data_master"
    end="jtag_uart.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x02001030" />
+  <parameter name="baseAddress" value="0x02001090" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -573,7 +632,16 @@
    start="CPU.data_master"
    end="sysid.control_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x02001028" />
+  <parameter name="baseAddress" value="0x02001088" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.0"
+   start="CPU.data_master"
+   end="performance_counter.control_slave">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x02001000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -591,12 +659,12 @@
    start="CPU.data_master"
    end="PLL.pll_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x02001000" />
+  <parameter name="baseAddress" value="0x02001070" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection kind="avalon" version="16.0" start="CPU.data_master" end="LEDs.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x02001010" />
+  <parameter name="baseAddress" value="0x02001060" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -608,13 +676,18 @@
   <parameter name="baseAddress" value="0x01000000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
+ <connection kind="avalon" version="16.0" start="CPU.data_master" end="timer.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x02001040" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
  <connection
    kind="avalon"
    version="16.0"
    start="CPU.instruction_master"
    end="jtag_uart.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x02001030" />
+  <parameter name="baseAddress" value="0x02001090" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -640,6 +713,12 @@
  <connection kind="clock" version="16.0" start="PLL.c0" end="LEDs.clk" />
  <connection kind="clock" version="16.0" start="PLL.c0" end="jtag_uart.clk" />
  <connection kind="clock" version="16.0" start="PLL.c0" end="sysid.clk" />
+ <connection kind="clock" version="16.0" start="PLL.c0" end="timer.clk" />
+ <connection
+   kind="clock"
+   version="16.0"
+   start="PLL.c0"
+   end="performance_counter.clk" />
  <connection
    kind="clock"
    version="16.0"
@@ -647,6 +726,9 @@
    end="PLL.inclk_interface" />
  <connection kind="interrupt" version="16.0" start="CPU.irq" end="jtag_uart.irq">
   <parameter name="irqNumber" value="0" />
+ </connection>
+ <connection kind="interrupt" version="16.0" start="CPU.irq" end="timer.irq">
+  <parameter name="irqNumber" value="1" />
  </connection>
  <connection
    kind="reset"
@@ -666,6 +748,12 @@
    start="clk_0.clk_reset"
    end="jtag_uart.reset" />
  <connection kind="reset" version="16.0" start="clk_0.clk_reset" end="sysid.reset" />
+ <connection kind="reset" version="16.0" start="clk_0.clk_reset" end="timer.reset" />
+ <connection
+   kind="reset"
+   version="16.0"
+   start="clk_0.clk_reset"
+   end="performance_counter.reset" />
  <connection
    kind="reset"
    version="16.0"
