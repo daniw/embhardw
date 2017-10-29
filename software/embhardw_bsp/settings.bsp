@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Oct 29, 2017 1:30:49 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1509280249470</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Oct 29, 2017 5:53:57 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1509296037436</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>/home/user/studium/embhardw/software/embhardw_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>../../fpga/sopc.sopcinfo</SopcDesignFile>
@@ -905,38 +905,50 @@
                 <attributes>memory</attributes>
         </MemoryMap>
         <MemoryMap>
+                <slaveDescriptor>tightly_coupled_data_memory</slaveDescriptor>
+                <addressRange>0x02000000 - 0x02001FFF</addressRange>
+                <addressSpan>8192</addressSpan>
+                <attributes>memory</attributes>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>tightly_coupled_instruction_memory</slaveDescriptor>
+                <addressRange>0x02003000 - 0x02003FFF</addressRange>
+                <addressSpan>4096</addressSpan>
+                <attributes>memory</attributes>
+        </MemoryMap>
+        <MemoryMap>
                 <slaveDescriptor>performance_counter</slaveDescriptor>
-                <addressRange>0x02001000 - 0x0200103F</addressRange>
+                <addressRange>0x02005000 - 0x0200503F</addressRange>
                 <addressSpan>64</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>timer</slaveDescriptor>
-                <addressRange>0x02001040 - 0x0200105F</addressRange>
+                <addressRange>0x02005040 - 0x0200505F</addressRange>
                 <addressSpan>32</addressSpan>
                 <attributes>timer</attributes>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>LEDs</slaveDescriptor>
-                <addressRange>0x02001060 - 0x0200106F</addressRange>
+                <addressRange>0x02005060 - 0x0200506F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>PLL</slaveDescriptor>
-                <addressRange>0x02001070 - 0x0200107F</addressRange>
+                <addressRange>0x02005070 - 0x0200507F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>sysid</slaveDescriptor>
-                <addressRange>0x02001088 - 0x0200108F</addressRange>
+                <addressRange>0x02005088 - 0x0200508F</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>jtag_uart</slaveDescriptor>
-                <addressRange>0x02001090 - 0x02001097</addressRange>
+                <addressRange>0x02005090 - 0x02005097</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes>printable</attributes>
         </MemoryMap>

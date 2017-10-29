@@ -17,7 +17,7 @@ typedef struct Counter {
     bool isNew;
 } Counter;
 
-static void handle_timerIRQ(void * context, alt_u32 id);
+static void handle_timerIRQ(void * context, alt_u32 id) __attribute__ ((section(".exceptions")));
 
 int main(void) {
     Counter downTimer = {.value=0, .isNew = false};
