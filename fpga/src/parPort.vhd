@@ -65,6 +65,18 @@ begin
     end if;
 end process pPortSync;
 
+-- Process to assign output data
+pPortOut : process(RegDir_D, RegPort_D)
+begin
+    for i in 7 downto 0 loop
+        if RegDir_D(i) = '1' then
+            ParPort_DIO(i) <= RegPort_D(i);
+        else
+            ParPort_DIO(i) <= 'U';
+        end if;
+    end loop;
+end process pPortOut;
+
 -- Read Process from registers with wait 1
 pRegRd  : process(Clk_CI, Reset_RLI)
 begin
