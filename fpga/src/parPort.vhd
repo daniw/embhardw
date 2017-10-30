@@ -2,34 +2,39 @@ library ieee;
 use ieee.std_logic_1164.all;
 
 entity parPort is
+    generic(
+        PORT_WIDTH  : integer   := 8    -- Port width in number of bits
+        ;
+        ADDR_WIDTH  : integer   := 3    -- Address width in number of bits
+    );
     port(
     -- Avalon interface signals
     Clk_CI          : in    std_logic
     ;
     Reset_RLI       : in    std_logic
     ;
-    Address_DI      : in    std_logic_vector(2 downto 0)
+    Address_DI      : in    std_logic_vector(ADDR_WIDTH-1 downto 0)
     ;
     Read_SI         : in    std_logic
     ;
-    ReadData_DO     : out   std_logic_vector(7 downto 0)
+    ReadData_DO     : out   std_logic_vector(PORT_WIDTH-1 downto 0)
     ;
     Write_SI        : in    std_logic
     ;
-    WriteData_DI    : in    std_logic_vector(7 downto 0)
+    WriteData_DI    : in    std_logic_vector(PORT_WIDTH-1 downto 0)
     ;
     -- Parallel Port external interface
-    ParPort_DIO     : inout std_logic_vector(7 downto 0)
+    ParPort_DIO     : inout std_logic_vector(PORT_WIDTH-1 downto 0)
     );
 end entity parPort;
 
 architecture arch_parPort of parPort is
     -- Registers
-    signal RegDir_D     : std_logic_vector(7 downto 0);
-    signal RegPort_D    : std_logic_vector(7 downto 0);
-    signal RegPin_D     : std_logic_vector(7 downto 0);
-    signal ParPortSync0 : std_logic_vector(7 downto 0);
-    signal ParPortSync1 : std_logic_vector(7 downto 0);
+    signal RegDir_D     : std_logic_vector(PORT_WIDTH-1 downto 0);
+    signal RegPort_D    : std_logic_vector(PORT_WIDTH-1 downto 0);
+    signal RegPin_D     : std_logic_vector(PORT_WIDTH-1 downto 0);
+    signal ParPortSync0 : std_logic_vector(PORT_WIDTH-1 downto 0);
+    signal ParPortSync1 : std_logic_vector(PORT_WIDTH-1 downto 0);
 
 begin
 
@@ -42,7 +47,7 @@ begin
     elsif rising_edge(Clk_CI) then
         if Write_SI = '1' then
             -- Write cycle
-            case Address_DI(2 downto 0) is
+            case Address_DI(ADDR_WIDTH-1 downto 0) is
                 when "000"  => RegDir_D     <= WriteData_DI;
                 when "010"  => RegPort_D    <= WriteData_DI;
                 when "011"  => RegPort_D    <= RegPort_D or WriteData_DI;
@@ -68,7 +73,7 @@ end process pPortSync;
 -- Process to assign output data
 pPortOut : process(RegDir_D, RegPort_D)
 begin
-    for i in 7 downto 0 loop
+    for i in PORT_WIDTH-1 downto 0 loop
         if RegDir_D(i) = '1' then
             ParPort_DIO(i) <= RegPort_D(i);
         else
@@ -83,7 +88,7 @@ begin
     if Reset_RLI = '0' then
         ReadData_DO <= (others => '0');
     elsif rising_edge(Clk_CI) then 
-        case Address_DI(2 downto 0) is
+        case Address_DI(ADDR_WIDTH-1 downto 0) is
             when "000"  => ReadData_DO <= RegDir_D;
             when "001"  => ReadData_DO <= RegPin_D;
             when "010"  => ReadData_DO <= RegPort_D;
