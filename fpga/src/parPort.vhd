@@ -1,5 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
+use work.parPort_pkg.all;
 
 entity parPort is
     generic(
@@ -48,10 +49,10 @@ begin
         if Write_SI = '1' then
             -- Write cycle
             case Address_DI(ADDR_WIDTH-1 downto 0) is
-                when "000"  => RegDir_D     <= WriteData_DI;
-                when "010"  => RegPort_D    <= WriteData_DI;
-                when "011"  => RegPort_D    <= RegPort_D or WriteData_DI;
-                when "100"  => RegPort_D    <= RegPort_D and not WriteData_DI;
+                when ADDR_REGDIR  => RegDir_D     <= WriteData_DI;
+                when ADDR_REGPORT => RegPort_D    <= WriteData_DI;
+                when ADDR_REGSET  => RegPort_D    <= RegPort_D or WriteData_DI;
+                when ADDR_REGCLR  => RegPort_D    <= RegPort_D and not WriteData_DI;
                 when others => null
             end case;
         end if;
@@ -89,9 +90,9 @@ begin
         ReadData_DO <= (others => '0');
     elsif rising_edge(Clk_CI) then 
         case Address_DI(ADDR_WIDTH-1 downto 0) is
-            when "000"  => ReadData_DO <= RegDir_D;
-            when "001"  => ReadData_DO <= RegPin_D;
-            when "010"  => ReadData_DO <= RegPort_D;
+            when ADDR_REGDIR  => ReadData_DO <= RegDir_D;
+            when ADDR_REGPIN  => ReadData_DO <= RegPin_D;
+            when ADDR_REGPORT => ReadData_DO <= RegPort_D;
             when others => null;
     end if;
 end process pRegRd;
