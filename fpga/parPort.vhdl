@@ -23,10 +23,13 @@ entity parPort is
     );
 end entity parPort;
 
-architecture noWait of parPort is
+architecture arch_parPort of parPort is
+    -- Registers
     signal RegDir_D     : std_logic_vector(7 downto 0);
     signal RegPort_D    : std_logic_vector(7 downto 0);
     signal RegPin_D     : std_logic_vector(7 downto 0);
+    signal ParPortSync0 : std_logic_vector(7 downto 0);
+    signal ParPortSync1 : std_logic_vector(7 downto 0);
 
 begin
 
@@ -50,11 +53,17 @@ begin
     end if;
 end process pRegWr;
 
----- Read from registers without buffer and without delay
---ReadData_DO <=  RegDir_D    when Address_DI = "000" else
---                RegPin_D    when Address_DI = "001" else
---                RegPort_D   when Address_DI = "010" else
---                (others => '0');
+-- Synchronization of inputs to prevent metastability
+pPortSync : process(Clk_CI, Reset_RLI)
+begin
+    if Reset_RLI = '0' then
+        ParPortSync0 <= (others => '0');
+        ParPortSync1 <= (others => '0');
+    elsif rising_edge(Clk_CI) then
+        ParPortSync0 <= ParPort_DIO;
+        ParPortSync1 <= ParPortSync0;
+    end if;
+end process pPortSync;
 
 -- Read Process from registers with wait 1
 pRegRd  : process(Clk_CI, Reset_RLI)
@@ -64,10 +73,10 @@ begin
     elsif rising_edge(Clk_CI) then 
         case Address_DI(2 downto 0) is
             when "000"  => ReadData_DO <= RegDir_D;
-            when "000"  => ReadData_DO <= RegPin_D;
-            when "000"  => ReadData_DO <= RegPort_D;
+            when "001"  => ReadData_DO <= RegPin_D;
+            when "010"  => ReadData_DO <= RegPort_D;
             when others => null;
     end if;
 end process pRegRd;
 
-end architecture noWait;
+end architecture arch_parPort;
