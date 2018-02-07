@@ -53,7 +53,7 @@ begin
                 when ADDR_REGPORT => RegPort_D    <= WriteData_DI;
                 when ADDR_REGSET  => RegPort_D    <= RegPort_D or WriteData_DI;
                 when ADDR_REGCLR  => RegPort_D    <= RegPort_D and not WriteData_DI;
-                when others => null
+                when others => null;
             end case;
         end if;
     end if;
@@ -65,23 +65,26 @@ begin
     if Reset_RLI = '0' then
         ParPortSync0 <= (others => '0');
         ParPortSync1 <= (others => '0');
+        RegPin_D     <= (others => '0');
     elsif rising_edge(Clk_CI) then
         ParPortSync0 <= ParPort_DIO;
         ParPortSync1 <= ParPortSync0;
+        RegPin_D     <= ParPortSync1;
     end if;
 end process pPortSync;
 
--- Process to assign output data
-pPortOut : process(RegDir_D, RegPort_D)
-begin
-    for i in PORT_WIDTH-1 downto 0 loop
-        if RegDir_D(i) = '1' then
-            ParPort_DIO(i) <= RegPort_D(i);
-        else
-            ParPort_DIO(i) <= 'U';
-        end if;
-    end loop;
-end process pPortOut;
+---- Process to assign output data
+--pPortOut : process(RegDir_D, RegPort_D)
+--begin
+--    for i in PORT_WIDTH-1 downto 0 loop
+--        if RegDir_D(i) = '1' then
+--            ParPort_DIO(i) <= RegPort_D(i);
+--        else
+--            ParPort_DIO(i) <= 'Z';
+--        end if;
+--    end loop;
+--end process pPortOut;
+ParPort_DIO <= "01010101";
 
 -- Read Process from registers with wait 1
 pRegRd  : process(Clk_CI, Reset_RLI)
@@ -94,6 +97,7 @@ begin
             when ADDR_REGPIN  => ReadData_DO <= RegPin_D;
             when ADDR_REGPORT => ReadData_DO <= RegPort_D;
             when others => null;
+        end case;
     end if;
 end process pRegRd;
 

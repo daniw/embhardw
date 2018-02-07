@@ -20,8 +20,31 @@ typedef struct Counter {
 static void handle_timerIRQ(void * context, alt_u32 id) __attribute__ ((section(".exceptions")));
 
 int main(void) {
+    alt_u8 a = 0;
     Counter downTimer = {.value=0, .isNew = false};
     alt_irq_context statusISR;
+
+    // Set parPort as output
+    IOWR_8DIRECT(PARPORT_BASE, 0, 0xff);
+    IOWR_8DIRECT(PARPORT_BASE, 2, 0xff);
+    a = IORD_8DIRECT(PARPORT_BASE, 2);
+    IOWR_8DIRECT(PARPORT_BASE, 2, 0x00);
+    a = IORD_8DIRECT(PARPORT_BASE, 2);
+    IOWR_8DIRECT(PARPORT_BASE, 2, 0xff);
+    a = IORD_8DIRECT(PARPORT_BASE, 2);
+    IOWR_8DIRECT(PARPORT_BASE, 2, 0x00);
+    a = IORD_8DIRECT(PARPORT_BASE, 2);
+    IOWR_8DIRECT(PARPORT_BASE, 3, 0xff);
+    a = IORD_8DIRECT(PARPORT_BASE, 2);
+    IOWR_8DIRECT(PARPORT_BASE, 3, 0xff);
+    a = IORD_8DIRECT(PARPORT_BASE, 2);
+
+    IOWR_8DIRECT(LEDS_BASE, 0, 0x00);
+    IOWR_8DIRECT(LEDS_BASE, 0, 0xff);
+    IOWR_8DIRECT(LEDS_BASE, 0, 0x00);
+    IOWR_8DIRECT(LEDS_BASE, 0, 0xff);
+    IOWR_8DIRECT(LEDS_BASE, 0, 0x00);
+    IOWR_8DIRECT(LEDS_BASE, 0, 0xff);
 
     puts("Reset performance counter");
     PERF_RESET(PERFORMANCE_COUNTER_BASE);
@@ -61,6 +84,7 @@ static void handle_timerIRQ(void * context, alt_u32 id) {
     ++(data_ptr->value);
     data_ptr->isNew = true;
     IOWR_8DIRECT(LEDS_BASE, 0, data_ptr->value);
+    IOWR_8DIRECT(PARPORT_BASE, 2, data_ptr->value);
     IOWR_16DIRECT(TIMER_BASE, ALTERA_AVALON_TIMER_STATUS_REG, CLEAR_IRQ);
     PERF_END(PERFORMANCE_COUNTER_BASE, PERFORMANCE_COUNTER_SEG_ISR);
 }

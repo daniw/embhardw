@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Oct 29, 2017 5:53:57 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1509296037436</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Nov 1, 2017 11:58:57 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1509577137511</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>/home/user/studium/embhardw/software/embhardw_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>../../fpga/sopc.sopcinfo</SopcDesignFile>
@@ -110,7 +110,7 @@
                 <SettingName>hal.linker.enable_alt_load_copy_exceptions</SettingName>
                 <Identifier>none</Identifier>
                 <Type>Boolean</Type>
-                <Value>0</Value>
+                <Value>1</Value>
                 <DefaultValue>0</DefaultValue>
                 <DestinationFile>none</DestinationFile>
                 <Description>Causes the alt_load() facility to copy the .exceptions section. If true, this setting defines the macro ALT_LOAD_COPY_EXCEPTIONS in linker.h.</Description>
@@ -912,43 +912,49 @@
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>tightly_coupled_instruction_memory</slaveDescriptor>
-                <addressRange>0x02003000 - 0x02003FFF</addressRange>
+                <addressRange>0x02002000 - 0x02002FFF</addressRange>
                 <addressSpan>4096</addressSpan>
                 <attributes>memory</attributes>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>performance_counter</slaveDescriptor>
-                <addressRange>0x02005000 - 0x0200503F</addressRange>
+                <addressRange>0x02004000 - 0x0200403F</addressRange>
                 <addressSpan>64</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>timer</slaveDescriptor>
-                <addressRange>0x02005040 - 0x0200505F</addressRange>
+                <addressRange>0x02004040 - 0x0200405F</addressRange>
                 <addressSpan>32</addressSpan>
                 <attributes>timer</attributes>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>LEDs</slaveDescriptor>
-                <addressRange>0x02005060 - 0x0200506F</addressRange>
+                <addressRange>0x02004060 - 0x0200406F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>PLL</slaveDescriptor>
-                <addressRange>0x02005070 - 0x0200507F</addressRange>
+                <addressRange>0x02004070 - 0x0200407F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
+                <slaveDescriptor>parPort</slaveDescriptor>
+                <addressRange>0x02004088 - 0x0200408F</addressRange>
+                <addressSpan>8</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
                 <slaveDescriptor>sysid</slaveDescriptor>
-                <addressRange>0x02005088 - 0x0200508F</addressRange>
+                <addressRange>0x02004090 - 0x02004097</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>jtag_uart</slaveDescriptor>
-                <addressRange>0x02005090 - 0x02005097</addressRange>
+                <addressRange>0x02004098 - 0x0200409F</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes>printable</attributes>
         </MemoryMap>
